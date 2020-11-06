@@ -9,12 +9,11 @@
 /* Begin PBXBuildFile section */
 		E65FD4562551D1700083DE6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65FD4552551D1700083DE6E /* AppDelegate.swift */; };
 		E65FD4582551D1700083DE6E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65FD4572551D1700083DE6E /* SceneDelegate.swift */; };
-		E65FD45A2551D1700083DE6E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65FD4592551D1700083DE6E /* ViewController.swift */; };
-		E65FD45D2551D1700083DE6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E65FD45B2551D1700083DE6E /* Main.storyboard */; };
 		E65FD45F2551D1710083DE6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E65FD45E2551D1710083DE6E /* Assets.xcassets */; };
 		E65FD4622551D1710083DE6E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E65FD4602551D1710083DE6E /* LaunchScreen.storyboard */; };
 		E65FD46D2551D1710083DE6E /* MVVMTrendingMoviesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65FD46C2551D1710083DE6E /* MVVMTrendingMoviesTests.swift */; };
 		E65FD4782551D1710083DE6E /* MVVMTrendingMoviesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65FD4772551D1710083DE6E /* MVVMTrendingMoviesUITests.swift */; };
+		E6B02C5B2555717A00C1C890 /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B02C5A2555717A00C1C890 /* MovieListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,8 +37,6 @@
 		E65FD4522551D1700083DE6E /* MVVMTrendingMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MVVMTrendingMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E65FD4552551D1700083DE6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E65FD4572551D1700083DE6E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E65FD4592551D1700083DE6E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		E65FD45C2551D1700083DE6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E65FD45E2551D1710083DE6E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E65FD4612551D1710083DE6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E65FD4632551D1710083DE6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +46,7 @@
 		E65FD4732551D1710083DE6E /* MVVMTrendingMoviesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MVVMTrendingMoviesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E65FD4772551D1710083DE6E /* MVVMTrendingMoviesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVVMTrendingMoviesUITests.swift; sourceTree = "<group>"; };
 		E65FD4792551D1710083DE6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E6B02C5A2555717A00C1C890 /* MovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,13 +97,10 @@
 		E65FD4542551D1700083DE6E /* MVVMTrendingMovies */ = {
 			isa = PBXGroup;
 			children = (
-				E65FD4552551D1700083DE6E /* AppDelegate.swift */,
-				E65FD4572551D1700083DE6E /* SceneDelegate.swift */,
-				E65FD4592551D1700083DE6E /* ViewController.swift */,
-				E65FD45B2551D1700083DE6E /* Main.storyboard */,
-				E65FD45E2551D1710083DE6E /* Assets.xcassets */,
-				E65FD4602551D1710083DE6E /* LaunchScreen.storyboard */,
-				E65FD4632551D1710083DE6E /* Info.plist */,
+				E6B02C68255571DF00C1C890 /* SupportingFiles */,
+				E6B02C562555703E00C1C890 /* App */,
+				E6B02C552555702800C1C890 /* Network */,
+				E6B02C2E25556E5600C1C890 /* Features */,
 			);
 			path = MVVMTrendingMovies;
 			sourceTree = "<group>";
@@ -126,6 +121,56 @@
 				E65FD4792551D1710083DE6E /* Info.plist */,
 			);
 			path = MVVMTrendingMoviesUITests;
+			sourceTree = "<group>";
+		};
+		E6B02C2E25556E5600C1C890 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				E6B02C3025556E6400C1C890 /* MovieDetail */,
+				E6B02C2F25556E5D00C1C890 /* MovieList */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		E6B02C2F25556E5D00C1C890 /* MovieList */ = {
+			isa = PBXGroup;
+			children = (
+				E6B02C5A2555717A00C1C890 /* MovieListViewController.swift */,
+			);
+			path = MovieList;
+			sourceTree = "<group>";
+		};
+		E6B02C3025556E6400C1C890 /* MovieDetail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MovieDetail;
+			sourceTree = "<group>";
+		};
+		E6B02C552555702800C1C890 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		E6B02C562555703E00C1C890 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				E65FD4552551D1700083DE6E /* AppDelegate.swift */,
+				E65FD4572551D1700083DE6E /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		E6B02C68255571DF00C1C890 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				E65FD45E2551D1710083DE6E /* Assets.xcassets */,
+				E65FD4602551D1710083DE6E /* LaunchScreen.storyboard */,
+				E65FD4632551D1710083DE6E /* Info.plist */,
+			);
+			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,7 +278,6 @@
 			files = (
 				E65FD4622551D1710083DE6E /* LaunchScreen.storyboard in Resources */,
 				E65FD45F2551D1710083DE6E /* Assets.xcassets in Resources */,
-				E65FD45D2551D1700083DE6E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,9 +302,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E65FD45A2551D1700083DE6E /* ViewController.swift in Sources */,
 				E65FD4562551D1700083DE6E /* AppDelegate.swift in Sources */,
 				E65FD4582551D1700083DE6E /* SceneDelegate.swift in Sources */,
+				E6B02C5B2555717A00C1C890 /* MovieListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,14 +340,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		E65FD45B2551D1700083DE6E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E65FD45C2551D1700083DE6E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		E65FD4602551D1710083DE6E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -437,7 +473,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = MVVMTrendingMovies/Info.plist;
+				INFOPLIST_FILE = MVVMTrendingMovies/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -455,7 +491,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = MVVMTrendingMovies/Info.plist;
+				INFOPLIST_FILE = MVVMTrendingMovies/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
