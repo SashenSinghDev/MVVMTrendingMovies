@@ -9,11 +9,11 @@ import Foundation
 
 enum MoviesViewState {
     case movieList
-    case movieDetail
+    case movieDetail(movie: Movie)
 }
 
 protocol MovieResponder {
-    func showMovieDetail()
+    func showMovieDetail(movie: Movie)
 }
 
 final class MoviesViewModel: MovieResponder {
@@ -23,7 +23,7 @@ final class MoviesViewModel: MovieResponder {
         viewState.value = .movieList
     }
 
-    func showMovieDetail() {
-        viewState.value = .movieDetail
+    func showMovieDetail(movie: Movie) {
+        viewState.value = .movieDetail(movie: movie)
     }
 }

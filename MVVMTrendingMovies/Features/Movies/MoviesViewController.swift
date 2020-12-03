@@ -40,8 +40,8 @@ final class MoviesViewController: UINavigationController {
             switch moviesViewState {
             case .movieList:
                 self.presentMovieList()
-            case .movieDetail:
-                self.presentMovieDetails()
+            case .movieDetail(let movie):
+                self.presentMovieDetails(with: movie)
             }
         }
     }
@@ -50,7 +50,7 @@ final class MoviesViewController: UINavigationController {
         pushViewController(movieListViewController, animated: false)
     }
 
-    private func presentMovieDetails() {
+    private func presentMovieDetails(with movie: Movie) {
         let movieDetailViewModel = MovieDetailViewModel()
         let movieDetailViewController = makeMovieDetailViewController(movieDetailViewModel)
         pushViewController(movieDetailViewController, animated: true)

@@ -32,7 +32,15 @@ final class MoviesDependancyContainer {
 
     private func makeMovieListViewController() -> MovieListViewController {
         let movieListViewModel = makeMovieListViewModel()
-        return MovieListViewController(movieListViewModel: movieListViewModel)
+        let imageRepository = DefaultImageRepository(networkService: dependencies.imageService)
+
+        let movieListCellViewModelFactory = { (movie: Movie) in
+            return self.makeMovieListCellViewModel(movie: movie, imageRepository: imageRepository)
+        }
+
+        return MovieListViewController(movieListViewModel: movieListViewModel,
+                                       imageRepository: imageRepository,
+                                       movieListCellViewModelFactory: movieListCellViewModelFactory)
     }
 
     private func makeMovieListViewModel() -> MovieListViewModel {
@@ -44,5 +52,9 @@ final class MoviesDependancyContainer {
 
     private func makeMovieDetailViewController(movieDetailViewModel: MovieDetailViewModel) -> MovieDetailViewController {
         return MovieDetailViewController(movieDetailViewModel: movieDetailViewModel)
+    }
+
+    private func makeMovieListCellViewModel(movie: Movie, imageRepository: ImageRepository) -> MovieListCellViewModel {
+        return MovieListCellViewModel(movie: movie, imageRepository: imageRepository)
     }
 }

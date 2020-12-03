@@ -7,11 +7,14 @@
 
 import Foundation
 
-struct Dependencies {
+final class Dependencies {
     let networkService: NetworkService
+    let imageService: NetworkService
 
-    init(networkService: NetworkService) {
+    init(networkService: NetworkService,
+         imageService: NetworkService) {
         self.networkService = networkService
+        self.imageService = imageService
     }
 }
 
@@ -26,12 +29,19 @@ final class AppDependencyContainer {
 
         func makeDependencies() -> Dependencies {
             let networkService = makeNetworkService()
-            return Dependencies(networkService: networkService)
+            let imageService = makeImageService()
+            return Dependencies(networkService: networkService,
+                                imageService: imageService)
         }
 
         func makeNetworkService() -> NetworkService {
             let config = ApiDataNetworkConfig(baseURL: URL(string: appConfiguration.apiBaseURL)!,
                                               queryParameters: ["api_key": appConfiguration.apiKey])
+            return DefaultNetworkService(config: config)
+        }
+
+        func makeImageService() -> NetworkService {
+            let config = ApiDataNetworkConfig(baseURL: URL(string: appConfiguration.imageBaseURL)!)
             return DefaultNetworkService(config: config)
         }
 

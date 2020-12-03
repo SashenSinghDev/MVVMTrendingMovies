@@ -8,5 +8,5 @@
 import Foundation
 
 protocol MoviesRepository {
-    func fetchMovies(completion: @escaping (Result<[Movie], Error>) -> Void)
+    func fetchMovies(completion: @escaping (Result<[Movie], FetchError>) -> Void)
 }

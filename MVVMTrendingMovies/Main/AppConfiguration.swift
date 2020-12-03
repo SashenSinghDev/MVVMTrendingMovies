@@ -21,4 +21,11 @@ final class AppConfiguration {
         }
         return apiBaseURL
     }()
+
+    lazy var imageBaseURL: String = {
+        guard let apiBaseURL = Bundle.main.object(forInfoDictionaryKey: "ImageBaseURL") as? String else {
+            fatalError("ApiBaseURL must not be empty in plist")
+        }
+        return apiBaseURL
+    }()
 }

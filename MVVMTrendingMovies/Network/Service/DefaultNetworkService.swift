@@ -11,24 +11,6 @@ protocol NetworkSession {
   func dataTask(with url: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask
 }
 
-enum QueryParameters {
-    case apiKey
-
-    public func value() -> String {
-        switch self {
-        case .apiKey:
-            return "65df045510b9e20f5347a021ba912cad"
-        }
-    }
-
-    public var key: String {
-        switch self {
-        case .apiKey:
-            return "api_key"
-        }
-    }
-}
-
 extension URLSession: NetworkSession {}
 
 final class DefaultNetworkService: NetworkService {
@@ -41,14 +23,15 @@ final class DefaultNetworkService: NetworkService {
         self.config = config
     }
 
-    func requestData(url: URL, completion: @escaping (Result<Data, NetworkError>) -> Void) {
-        guard let request = self.urlRequest(with: url) else {
+    func requestData(with endpoint: Endpoint, completion: @escaping (Result<Data, NetworkError>) -> Void) {
+        guard let request = self.urlRequest(with: endpoint) else {
             return
         }
 
         session.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
-                guard error == nil else {
+                if let error = error {
+                    completion(.failure(.nonFatal(error: error)))
                     return
                 }
 
@@ -67,18 +50,21 @@ final class DefaultNetworkService: NetworkService {
         }.resume()
     }
 
-    private func urlRequest(with url: URL) -> URLRequest? {
-        var urlComponents = URLComponents(string: url.absoluteString)
-        var queryItems = urlComponents?.queryItems
-
-        queryItems?.append(URLQueryItem(name: QueryParameters.apiKey.key,
-                                       value: QueryParameters.apiKey.value()))
-        urlComponents?.queryItems = queryItems
+    private func urlRequest(with endpoint: Endpoint) -> URLRequest? {
+        var urlComponents = URLComponents(string: config.baseURL.absoluteString)
+        urlComponents?.path = "/\(endpoint.version)/\(endpoint.path)"
+        urlComponents?.setQueryItems(with: config.queryParameters)
 
         guard let url = urlComponents?.url else {
             return nil
         }
 
         return URLRequest(url: url)
+    }
+}
+
+extension URLComponents {
+    mutating func setQueryItems(with parameters: [String: String]) {
+        self.queryItems = parameters.map { URLQueryItem(name: $0.key, value: $0.value) }
     }
 }
