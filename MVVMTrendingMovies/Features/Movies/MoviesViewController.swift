@@ -11,11 +11,11 @@ import UIKit
 final class MoviesViewController: UINavigationController {
     private let moviesViewModel: MoviesViewModel
     private let movieListViewController: MovieListViewController
-    private let makeMovieDetailViewController: (_ viewModel: MovieDetailViewModel) -> MovieDetailViewController
+    private let makeMovieDetailViewController: (_ movie: Movie) -> MovieDetailViewController
 
     init(moviesViewModel: MoviesViewModel,
          movieListViewController: MovieListViewController,
-         movieDetailViewControllerFactory: @escaping (_ viewModel: MovieDetailViewModel) -> MovieDetailViewController) {
+         movieDetailViewControllerFactory: @escaping (_ movie: Movie) -> MovieDetailViewController) {
         self.moviesViewModel = moviesViewModel
         self.movieListViewController = movieListViewController
         self.makeMovieDetailViewController = movieDetailViewControllerFactory
@@ -51,8 +51,7 @@ final class MoviesViewController: UINavigationController {
     }
 
     private func presentMovieDetails(with movie: Movie) {
-        let movieDetailViewModel = MovieDetailViewModel()
-        let movieDetailViewController = makeMovieDetailViewController(movieDetailViewModel)
+        let movieDetailViewController = makeMovieDetailViewController(movie)
         pushViewController(movieDetailViewController, animated: true)
     }
 }

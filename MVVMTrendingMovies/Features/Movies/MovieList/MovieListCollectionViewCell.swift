@@ -14,7 +14,8 @@ final class MovieListCollectionViewCell: UICollectionViewCell {
         static let itemImageHeight: CGFloat = 64.0
     }
 
-    // Properties
+    // MARK: - Properties
+
     private let movieImage: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .gray

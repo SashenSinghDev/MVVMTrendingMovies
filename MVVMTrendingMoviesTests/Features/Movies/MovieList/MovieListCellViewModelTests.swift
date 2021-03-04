@@ -50,12 +50,18 @@ class MovieListCellViewModelTests: XCTestCase {
     }
 
     func test_getImage_returnsImage_forNoError() {
+        let expectation = self.expectation(description: "Should return image")
+
         let mockWidth = 100
-        let mockImage = UIImage(named: "mockImage")
+        let mockImage = UIImage()
         imageRepository.image = mockImage
 
         sut.getImage(with: mockWidth) { image in
+            expectation.fulfill()
+
             XCTAssertEqual(mockImage, image)
         }
+
+        waitForExpectations(timeout: 1, handler: nil)
     }
 }

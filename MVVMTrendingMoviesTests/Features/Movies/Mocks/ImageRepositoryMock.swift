@@ -19,7 +19,11 @@ class ImageRepositoryMock: ImageRepository {
             return
         }
 
-        guard let image = image else { return }
+        guard let image = image else {
+            completion(.failure(NetworkError.noContentReturned))
+            return
+        }
+
         completion(.success(image))
     }
 }

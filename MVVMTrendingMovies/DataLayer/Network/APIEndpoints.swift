@@ -14,9 +14,6 @@ struct APIEndpoints {
     }
 
     static func getMovieImage(path: String, width: Int) -> Endpoint {
-        let sizes = [92, 154, 185, 342, 500, 780]
-        let closestWidth = sizes.enumerated().min { abs($0.1 - width) < abs($1.1 - width) }?.element ?? sizes.first!
-
-        return Endpoint(path: "t/p/w\(closestWidth)\(path)", version: "")
+        return Endpoint(path: "t/p/w\(width)\(path)", version: "")
     }
 }

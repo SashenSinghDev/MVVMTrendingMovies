@@ -37,6 +37,8 @@ final class MovieListViewController: UIViewController {
         self.makeMovieListCellViewModel = movieListCellViewModelFactory
 
         super.init(nibName: nil, bundle: nil)
+
+        setup()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -48,7 +50,6 @@ final class MovieListViewController: UIViewController {
 
         bindToViewModel()
         viewModel.loadMovies()
-        setup()
     }
 
     private func setup() {

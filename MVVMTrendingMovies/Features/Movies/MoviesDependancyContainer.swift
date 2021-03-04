@@ -21,14 +21,16 @@ final class MoviesDependancyContainer {
     }
 
     func makeMoviesViewController() -> MoviesViewController {
-        let movieDetailViewControllerFactory = { (movieDetailViewModel: MovieDetailViewModel) in
-            return self.makeMovieDetailViewController(movieDetailViewModel: movieDetailViewModel)
+        let movieDetailViewControllerFactory = { (movie: Movie) in
+            return self.makeMovieDetailViewController(with: movie)
         }
         let movieListViewController = makeMovieListViewController()
         return MoviesViewController(moviesViewModel: moviesViewModel,
                                     movieListViewController: movieListViewController,
                                     movieDetailViewControllerFactory: movieDetailViewControllerFactory)
     }
+
+    // MARK: - Movie List
 
     private func makeMovieListViewController() -> MovieListViewController {
         let movieListViewModel = makeMovieListViewModel()
@@ -49,12 +51,32 @@ final class MoviesDependancyContainer {
                                   movieRepository: movieRepository)
     }
 
-
-    private func makeMovieDetailViewController(movieDetailViewModel: MovieDetailViewModel) -> MovieDetailViewController {
-        return MovieDetailViewController(movieDetailViewModel: movieDetailViewModel)
-    }
-
     private func makeMovieListCellViewModel(movie: Movie, imageRepository: ImageRepository) -> MovieListCellViewModel {
         return MovieListCellViewModel(movie: movie, imageRepository: imageRepository)
+    }
+
+    // MARK: - Movie Detail
+
+    private func makeMovieDetailViewController(with movie: Movie) -> MovieDetailViewController {
+        let viewModel = makeMovieDetailViewModel(with: movie)
+        let movieDetailImageCellViewModel = makeMovieDetailImageCellViewModel(with: viewModel.moviePosterURL)
+        let movieInformationCellViewModel = makeMovieInformationCellViewModel(with: movie)
+        return MovieDetailViewController(movieDetailViewModel: viewModel,
+                                         movieDetailImageCellViewModel: movieDetailImageCellViewModel,
+                                         movieInformationCellViewModel: movieInformationCellViewModel)
+    }
+
+    private func makeMovieDetailViewModel(with movie: Movie) -> MovieDetailViewModel {
+        return MovieDetailViewModel(movie: movie)
+    }
+
+    private func makeMovieDetailImageCellViewModel(with posterURL: String) -> MovieDetailImageCellViewModel {
+        let imageRepository = DefaultImageRepository(networkService: dependencies.imageService)
+        return MovieDetailImageCellViewModel(posterURL: posterURL,
+                                             imageRepository: imageRepository)
+    }
+
+    private func makeMovieInformationCellViewModel(with movie: Movie) -> MovieInformationCellViewModel {
+        return MovieInformationCellViewModel(movie: movie)
     }
 }
